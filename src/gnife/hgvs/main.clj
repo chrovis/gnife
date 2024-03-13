@@ -1,0 +1,52 @@
+(ns gnife.hgvs.main
+  (:require [clj-sub-command.core :as cmd]
+            [clojure.string :as string]
+            [gnife.common :refer [error-msg exit]]
+            [gnife.hgvs.format :as hgvs.format]
+            [gnife.hgvs.repair :as hgvs.repair]
+            [gnife.hgvs.to-variant :as hgvs.to-variant]))
+
+(def options
+  [["-h" "--help" "Print help"]])
+
+(def commands
+  [["format" hgvs.format/description]
+   ["repair" hgvs.repair/description]
+   ["to-variant" hgvs.to-variant/description]])
+
+(defn usage [options-summary commands-summary]
+  (->> ["Usage: gnife hgvs [--help] <command> [<args>]"
+        ""
+        "Options:"
+        options-summary
+        ""
+        "Commands:"
+        commands-summary]
+       (string/join \newline)))
+
+(defn validate-args
+  [args]
+  (let [{:keys [options command arguments errors options-summary commands-summary]}
+        (cmd/parse-cmds args options commands :allow-empty-command true)]
+    (cond
+      (:help options)
+      {:exit-message (usage options-summary commands-summary), :ok? true}
+
+      errors
+      {:exit-message (error-msg errors)}
+
+      command
+      {:command command, :arguments arguments}
+
+      :else
+      {:exit-message (usage options-summary commands-summary)})))
+
+(defn exec
+  [args]
+  (let [{:keys [command arguments exit-message ok?]} (validate-args args)]
+    (if exit-message
+      (exit (if ok? 0 1) exit-message)
+      (case command
+        :format (hgvs.format/exec arguments)
+        :repair (hgvs.repair/exec arguments)
+        :to-variant (hgvs.to-variant/exec arguments)))))

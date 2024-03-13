@@ -1,0 +1,32 @@
+name: release
+
+on: workflow_dispatch
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build
+        run: clojure -T:build bin
+
+      - name: Get version
+        id: get-version
+        run: echo "version=$(target/gnife --version)" >> "$GITHUB_OUTPUT"
+
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: gnife-${{ steps.get-version.outputs.version }}
+          path: |
+            target/gnife
+            target/gnife.jar
+
+      - name: Tag
+        run: |
+          git tag ${{ steps.get-version.outputs.version }}
+          git push origin ${{ steps.get-version.outputs.version }}
