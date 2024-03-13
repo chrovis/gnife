@@ -9,10 +9,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Prepare java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Install clojure tools
+        uses: DeLaGuardo/setup-clojure@12.5
+        with:
+          cli: 1.11.2.1446
+
       - name: Cache dependencies
         uses: actions/cache@v4
         with:
-          path: ~/.m2/repository
+          path: |
+            ~/.m2/repository
+            ~/.gitlibs
+            ~/.deps.clj
           key: ${{ runner.os }}-clojure-${{ hashFiles('**/deps.edn') }}
           restore-keys: |
             ${{ runner.os }}-clojure-test
@@ -26,10 +40,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Prepare java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Install clojure tools
+        uses: DeLaGuardo/setup-clojure@12.5
+        with:
+          cli: 1.11.2.1446
+
       - name: Cache dependencies
         uses: actions/cache@v4
         with:
-          path: ~/.m2/repository
+          path: |
+            ~/.m2/repository
+            ~/.gitlibs
+            ~/.deps.clj
           key: ${{ runner.os }}-clojure-${{ hashFiles('**/deps.edn') }}
           restore-keys: |
             ${{ runner.os }}-clojure-cljfmt
@@ -45,10 +73,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Prepare java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Install clojure tools
+        uses: DeLaGuardo/setup-clojure@12.5
+        with:
+          cli: 1.11.2.1446
+
       - name: Cache dependencies
         uses: actions/cache@v4
         with:
-          path: ~/.m2/repository
+          path: |
+            ~/.m2/repository
+            ~/.gitlibs
+            ~/.deps.clj
           key: ${{ runner.os }}-clojure-${{ hashFiles('**/deps.edn') }}
           restore-keys: |
             ${{ runner.os }}-clojure-build

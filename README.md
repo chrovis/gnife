@@ -1,4 +1,5 @@
 # Gnife [naɪf]
+[![build](https://github.com/chrovis/gnife/actions/workflows/build.yml/badge.svg)](https://github.com/chrovis/gnife/actions/workflows/build.yml)
 
 Gnife is a CLI tool for manipulating genomic files and data.
 

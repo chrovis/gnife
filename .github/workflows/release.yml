@@ -11,6 +11,17 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Prepare java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Install clojure tools
+        uses: DeLaGuardo/setup-clojure@12.5
+        with:
+          cli: 1.11.2.1446
+
       - name: Build
         run: clojure -T:build bin
 
