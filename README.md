@@ -3,6 +3,14 @@
 
 Gnife is a CLI tool for manipulating genomic files and data.
 
+## Installation
+
+```sh
+curl -sSL https://github.com/chrovis/gnife/releases/download/0.1.3/gnife -o gnife
+chmod +x gnife
+mv gnife [/your/PATH/dir/]
+```
+
 ## Build
 
 To build Gnife manually, you must setup Clojure (and Java) in advance.
