@@ -5,13 +5,26 @@ Gnife is a CLI tool for manipulating genomic files and data.
 
 ## Installation
 
+### Manual Install
+
+Gnife requires you have installed Java. A binary are available on the
+[releases](https://github.com/chrovis/gnife/releases) page.
+
 ```sh
 curl -sSL https://github.com/chrovis/gnife/releases/download/0.1.3/gnife -o gnife
 chmod +x gnife
 mv gnife [/your/PATH/dir/]
 ```
 
-## Build
+### Homebrew
+
+You can use [Homebrew](https://brew.sh/) on MacOS.
+
+```sh
+brew install xcoo/formulae/gnife
+```
+
+### Build
 
 To build Gnife manually, you must setup Clojure (and Java) in advance.
 
