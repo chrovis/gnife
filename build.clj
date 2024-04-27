@@ -6,9 +6,11 @@
 
 (def version (format "0.1.%s" (b/git-count-revs nil)))
 (def class-dir "target/classes")
-(def basis (b/create-basis {:project "deps.edn"}))
 (def uber-file "target/gnife.jar")
 (def bin-file "target/gnife")
+
+;; delay to defer side effects (artifact downloads)
+(def basis (delay (b/create-basis {:project "deps.edn"})))
 
 (defn clean [_]
   (b/delete {:path "target"}))
@@ -19,12 +21,14 @@
                :target-dir class-dir})
   (b/write-file {:path (str class-dir "/VERSION")
                  :string version})
-  (b/compile-clj {:basis basis
+  (b/compile-clj {:basis @basis
                   :src-dirs ["src"]
-                  :class-dir class-dir})
+                  :class-dir class-dir
+                  :compile-opts {:elide-meta [:doc :file :line :added]
+                                 :direct-linking true}})
   (b/uber {:class-dir class-dir
            :uber-file uber-file
-           :basis basis
+           :basis @basis
            :main 'gnife.main}))
 
 (def ^String preamble
