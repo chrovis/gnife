@@ -77,6 +77,15 @@ hgvs
 
 `gnife [type] [command] --help` to display detailed usage of each command.
 
+## JVM Options
+
+To pass extra arguments to the JVM, set the `GNIFE_JVM_OPTS` environment
+variable.
+
+```sh
+export GNIFE_JVM_OPTS="-XX:TieredStopAtLevel=1 -Xmx4g"
+```
+
 ## Test
 
 To run tests,
