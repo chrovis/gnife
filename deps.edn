@@ -1,7 +1,7 @@
 {:deps {clj-hgvs/clj-hgvs {:mvn/version "0.4.7"}
         clj-sub-command/clj-sub-command {:mvn/version "0.6.0"}
         cljam/cljam {:mvn/version "0.8.4"}
-        org.clojure/clojure {:mvn/version "1.11.1"}
+        org.clojure/clojure {:mvn/version "1.11.3"}
         org.clojure/tools.cli {:mvn/version "1.1.230"}
         varity/varity {:mvn/version "0.11.0"}}
 
@@ -22,5 +22,5 @@
 
            :build
            {:extra-deps {io.github.clojure/tools.build
-                         {:git/tag "v0.9.6" :git/sha "8e78bcc"}}
+                         {:git/tag "v0.10.0" :git/sha "3a2c484"}}
             :ns-default build}}}
