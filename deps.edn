@@ -8,7 +8,7 @@
  :aliases {:test
            {:extra-paths ["test"]
             :extra-deps {io.github.totakke/cavia
-                         {:git/tag "v0.7.0_1" :git/sha "9dd80e7"}
+                         {:git/tag "v0.7.2" :git/sha "0788cb4"}
                          io.github.cognitect-labs/test-runner
                          {:git/tag "v0.5.1" :git/sha "dfb30dd"}
                          nubank/matcher-combinators {:mvn/version "3.9.1"}}
